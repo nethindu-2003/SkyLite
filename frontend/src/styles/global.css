@@ -1,0 +1,90 @@
+/* styles/global.css */
+@import "tailwindcss";
+@import './theme.css';
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-guide);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* --- Typography Classes --- */
+.text-display-lg {
+  font-family: var(--font-hero);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em; /* Tighter premium aesthetic */
+  line-height: 1.1;
+}
+
+.text-headline {
+  font-family: var(--font-hero);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-label-sm {
+  font-family: var(--font-guide);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* Film credits vibe */
+}
+
+/* --- UI Utilities --- */
+/* The Glass & Gradient Rule */
+.glass-panel {
+  background: rgba(var(--surface-container-highest-rgb), 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--outline-variant); /* Ghost border fallback */
+}
+
+/* Primary Button Base */
+.btn-primary {
+  background: linear-gradient(180deg, #ff1a26 0%, var(--primary-container) 100%);
+  color: var(--on-primary-container);
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  border: none;
+  font-family: var(--font-guide);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-ambient-hover);
+}
+
+/* Poster Card Base */
+.movie-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  position: relative;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-ambient-hover);
+}
+
+/* The No-Line Rule (Using gap for structure) */
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background-color: var(--surface-container-low); /* Spacing via color shift */
+}

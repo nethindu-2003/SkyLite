@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      # CORS Configuration so React (localhost:5173 or 3000) can talk to the Gateway
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      
+      # Routing Rules
+      routes:
+        # Route for User & Identity Service
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/auth/**, /api/users/**
+            
+        # Route for Movie Catalog Service
+        - id: movie-catalog-service
+          uri: lb://MOVIE-CATALOG-SERVICE
+          predicates:
+            - Path=/api/movies/**
+            
+        # Route for Show & Theater Service
+        - id: show-theater-service
+          uri: lb://SHOW-THEATER-SERVICE
+          predicates:
+            - Path=/api/theater/**
+            
+        # Route for System Configuration Service
+        - id: system-config-service
+          uri: lb://SYSTEM-CONFIG-SERVICE
+          predicates:
+            - Path=/api/config/**
+            
+        # Route for Booking Service
+        - id: booking-service
+          uri: lb://BOOKING-SERVICE
+          predicates:
+            - Path=/api/bookings/**
+            
+        # Route for Payment Service
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payments/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

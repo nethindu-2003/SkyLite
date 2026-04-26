@@ -1,0 +1,45 @@
+/* styles/theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap');
+
+:root {
+  /* --- 1. Colors & Surface Philosophy --- */
+  /* Deep layers */
+  --surface: #131314;
+  --surface-rgb: 19, 19, 20; 
+  --surface-container-lowest: #0a0a0a;
+  --surface-container-low: #1c1c1e;
+  
+  /* Elevating layers */
+  --surface-container-high: #2a2a2d;
+  --surface-container-highest: #38383c;
+  --surface-container-highest-rgb: 56, 56, 60;
+  
+  /* Accents */
+  --secondary: #e9c349; /* The Spotlight / Gold */
+  --primary-container: #e50914; /* The Pulse / Crimson Red */
+  --primary-container-rgb: 229, 9, 20;
+  
+  /* Text */
+  --on-surface: #ffffff;
+  --on-surface-variant: #b3b3b3; /* Must maintain 4.5:1 ratio */
+  --on-primary-container: #ffffff;
+  
+  /* UI Elements */
+  --outline-variant: rgba(255, 255, 255, 0.15); /* For Ghost Borders */
+  --surface-dim: #000000;
+
+  /* --- 2. Typography --- */
+  --font-hero: 'Manrope', sans-serif;
+  --font-guide: 'Inter', sans-serif;
+
+  /* --- 3. Radii --- */
+  --radius-pill: 3rem; /* rounded-xl for Buttons */
+  --radius-card: 1.5rem; /* rounded-md for Posters */
+
+  /* --- 4. Elevation & Depth --- */
+  --shadow-ambient: 0px 20px 40px rgba(var(--primary-container-rgb), 0.12);
+  --shadow-ambient-hover: 0px 25px 50px rgba(var(--primary-container-rgb), 0.20);
+  
+  /* --- 5. Transitions --- */
+  --transition-smooth: 300ms ease-out;
+}
