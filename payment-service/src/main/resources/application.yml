@@ -5,7 +5,7 @@ spring:
   application:
     name: payment-service
   datasource:
-    url: jdbc:mysql://localhost:3306/skylite_cinema?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/skylite_cinema?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: 2003@Nethindu
     driver-class-name: com.mysql.cj.jdbc.Driver

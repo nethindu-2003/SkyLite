@@ -5,7 +5,7 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/skylite_cinema?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/skylite_cinema?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: 2003@Nethindu
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,6 +16,18 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nethindu359@gmail.com
+    password: obstqyfghqkzimua
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 eureka:
   client:
     serviceUrl:

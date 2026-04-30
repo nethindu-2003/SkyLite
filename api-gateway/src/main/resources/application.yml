@@ -25,37 +25,69 @@ spring:
       # Routing Rules
       routes:
         # Route for User & Identity Service
-        - id: user-service
+        - id: user-service-auth-exact
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/auth/**, /api/users/**
-            
+            - Path=/api/auth
+        - id: user-service-auth-wildcard
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/auth/**
+        - id: user-service-users-exact
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users
+        - id: user-service-users-wildcard
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+
         # Route for Movie Catalog Service
-        - id: movie-catalog-service
+        - id: movie-catalog-service-exact
+          uri: lb://MOVIE-CATALOG-SERVICE
+          predicates:
+            - Path=/api/movies
+        - id: movie-catalog-service-wildcard
           uri: lb://MOVIE-CATALOG-SERVICE
           predicates:
             - Path=/api/movies/**
-            
+
         # Route for Show & Theater Service
-        - id: show-theater-service
+        - id: show-theater-service-exact
+          uri: lb://SHOW-THEATER-SERVICE
+          predicates:
+            - Path=/api/theater
+        - id: show-theater-service-wildcard
           uri: lb://SHOW-THEATER-SERVICE
           predicates:
             - Path=/api/theater/**
-            
+
         # Route for System Configuration Service
-        - id: system-config-service
+        - id: system-config-service-exact
+          uri: lb://SYSTEM-CONFIG-SERVICE
+          predicates:
+            - Path=/api/config
+        - id: system-config-service-wildcard
           uri: lb://SYSTEM-CONFIG-SERVICE
           predicates:
             - Path=/api/config/**
-            
+
         # Route for Booking Service
-        - id: booking-service
+        - id: booking-service-exact
+          uri: lb://BOOKING-SERVICE
+          predicates:
+            - Path=/api/bookings
+        - id: booking-service-wildcard
           uri: lb://BOOKING-SERVICE
           predicates:
             - Path=/api/bookings/**
-            
+
         # Route for Payment Service
-        - id: payment-service
+        - id: payment-service-exact
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payments
+        - id: payment-service-wildcard
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/api/payments/**
