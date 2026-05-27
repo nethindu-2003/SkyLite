@@ -60,6 +60,15 @@ public class TheaterService {
         return showRepository.findByMovieId(movieId);
     }
 
+    public List<Show> getAllShows() {
+        return showRepository.findAll();
+    }
+
+    public Show getShowById(Integer showId) {
+        return showRepository.findById(showId)
+                .orElseThrow(() -> new RuntimeException("Show not found with id: " + showId));
+    }
+
     public Show scheduleNewShow(ShowRequest request) {
         // Basic overlapping check for our single screen
         List<Show> existingShows = showRepository.findByShowDateOrderByStartTimeAsc(request.getShowDate());

@@ -27,39 +27,39 @@ import AdminSettings from './admin/AdminSettings'
 import AdminDashboard from './admin/AdminDashboard'
 
 function App() {
-  return (
-    <Routes>
-      {/* User Facing Routes wrapped in MainLayout */}
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movie/:movieId" element={<MovieDetails />} />
-        <Route path="/showtimes" element={<Showtimes />} />
-        <Route path="/about" element={<AboutUs />} />
+ return (
+ <Routes>
+ {/* User Facing Routes wrapped in MainLayout */}
+ <Route element={<MainLayout />}>
+ <Route path="/" element={<Home />} />
+ <Route path="/movies" element={<Movies />} />
+ <Route path="/movie/:movieId" element={<MovieDetails />} />
+ <Route path="/showtimes" element={<Showtimes />} />
+ <Route path="/about" element={<AboutUs />} />
 
-        {/* Protected User Routes */}
-        <Route path="/seatselection" element={<ProtectedRoute><SeatSelection /></ProtectedRoute>} />
-        <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
-        <Route path="/confirmation" element={<ProtectedRoute><Confirmation /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-      </Route>
+ {/* Protected User Routes */}
+ <Route path="/seatselection" element={<ProtectedRoute><SeatSelection /></ProtectedRoute>} />
+ <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+ <Route path="/confirmation" element={<ProtectedRoute><Confirmation /></ProtectedRoute>} />
+ <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+ </Route>
 
-      {/* Admin Protected Routes wrapped in AdminLayout */}
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="movies" element={<AdminMovies />} />
-        <Route path="showtimes" element={<AdminShowtimes />} />
-        <Route path="seats" element={<AdminSeatLayout />} />
-        <Route path="users" element={<AdminUsers />} />
-        <Route path="bookings" element={<AdminGateBooking />} />
-        <Route path="settings" element={<AdminSettings />} />
-      </Route>
+ {/* Admin Protected Routes wrapped in AdminLayout */}
+ <Route path="/admin" element={<AdminLayout />}>
+ <Route path="dashboard" element={<AdminDashboard />} />
+ <Route path="movies" element={<AdminMovies />} />
+ <Route path="showtimes" element={<AdminShowtimes />} />
+ <Route path="seats" element={<AdminSeatLayout />} />
+ <Route path="users" element={<AdminUsers />} />
+ <Route path="bookings" element={<AdminGateBooking />} />
+ <Route path="settings" element={<AdminSettings />} />
+ </Route>
 
-      {/* Auth Routes (No layout or specific layout if needed) */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
-  )
+ {/* Auth Routes (No layout or specific layout if needed) */}
+ <Route path="/login" element={<Login />} />
+ <Route path="/register" element={<Register />} />
+ </Routes>
+ )
 }
 
 export default App

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/config")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ConfigController {
 
     private final ConfigService configService;

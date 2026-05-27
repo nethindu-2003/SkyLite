@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/theater")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class TheaterController {
 
     private final TheaterService theaterService;
@@ -38,6 +37,16 @@ public class TheaterController {
     @GetMapping("/shows/movie/{movieId}")
     public ResponseEntity<List<Show>> getShowsByMovie(@PathVariable Integer movieId) {
         return ResponseEntity.ok(theaterService.getShowsByMovie(movieId));
+    }
+
+    @GetMapping("/shows")
+    public ResponseEntity<List<Show>> getAllShows() {
+        return ResponseEntity.ok(theaterService.getAllShows());
+    }
+
+    @GetMapping("/shows/{showId}")
+    public ResponseEntity<Show> getShowById(@PathVariable Integer showId) {
+        return ResponseEntity.ok(theaterService.getShowById(showId));
     }
 
     // --- ADMIN ENDPOINTS ---

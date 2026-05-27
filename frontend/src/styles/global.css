@@ -64,7 +64,6 @@ body {
 }
 
 .btn-primary:hover {
-  transform: scale(1.05);
   box-shadow: var(--shadow-ambient-hover);
 }
 
@@ -77,7 +76,6 @@ body {
 }
 
 .movie-card:hover {
-  transform: scale(1.03);
   box-shadow: var(--shadow-ambient-hover);
 }
 

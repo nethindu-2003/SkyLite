@@ -103,10 +103,13 @@ public class UserService {
         // 3. Hash the new password and save (passwordEncoder already configured with Bcrypt salt)
         user.setPassword(passwordEncoder.encode(newPassword));
 
-        // 4. Clear the tokens so they can't be reused
         user.setResetToken(null);
         user.setResetTokenExpiry(null);
 
         userRepository.save(user);
+    }
+
+    public java.util.List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

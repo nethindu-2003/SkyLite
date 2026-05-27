@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // Allows your React frontend to communicate with this backend
 public class AuthController {
 
     private final UserService userService;
