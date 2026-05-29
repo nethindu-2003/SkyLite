@@ -10,7 +10,7 @@ export default function AdminLayout() {
 
  {/* Dynamic Content Area */}
  <main className="flex-grow pt-20 md:pt-28">
- <div className="max-w-[1600px] mx-auto w-full">
+ <div className="w-full">
  <Outlet />
  </div>
  </main>

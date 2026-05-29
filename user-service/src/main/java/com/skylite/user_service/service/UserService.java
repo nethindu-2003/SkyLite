@@ -112,4 +112,25 @@ public class UserService {
     public java.util.List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    public User getUserById(Integer userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public User updateUser(Integer userId, com.skylite.user_service.dto.UpdateUserRequest request) {
+        User user = getUserById(userId);
+        user.setName(request.getName());
+        user.setPhone(request.getPhone());
+        return userRepository.save(user);
+    }
+
+    public void updatePassword(Integer userId, com.skylite.user_service.dto.UpdatePasswordRequest request) {
+        User user = getUserById(userId);
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new RuntimeException("Incorrect current password.");
+        }
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+    }
 }

@@ -150,15 +150,15 @@ export default function Payment() {
  }
 
  return (
- <div className="bg-[#131314] text-white selection:bg-primary-container selection:text-white min-h-screen pt-24 md:pt-28 pb-32">
+ <div className="bg-[#131314] text-white selection:bg-primary-container selection:text-white min-h-screen w-full space-y-10">
  
  {/* Hero Header */}
- <section className="max-w-7xl mx-auto px-6 lg:px-12 mb-10 text-center md:text-left">
+ <section className="w-full px-6 md:px-12 lg:px-20 mb-10 text-center md:text-left">
  <h1 className="text-4xl md:text-5xl font-headline font-black text-white uppercase tracking-tight mb-2">Secure Checkout</h1>
  <p className="text-zinc-500 uppercase tracking-widest text-[9px] font-bold">Secure Payment Protocol</p>
  </section>
 
- <main className="max-w-7xl mx-auto px-6 lg:px-12">
+ <main className="w-full px-6 md:px-12 lg:px-20">
  {error && (
  <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm font-bold flex items-center gap-3 animate-in fade-in">
  <span className="material-symbols-outlined text-[20px]">gpp_bad</span>

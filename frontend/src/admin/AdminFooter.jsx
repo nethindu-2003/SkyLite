@@ -21,7 +21,7 @@ export default function AdminFooter() {
 
  return (
  <footer className="w-full bg-[#0e0e0f] border-t border-white/5 mt-auto py-4 md:py-6">
- <div className="max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+ <div className="w-full px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
 
  {/* Copyright */}
  <div className="text-zinc-600 font-body text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-center md:text-left">

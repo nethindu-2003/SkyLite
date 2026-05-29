@@ -44,7 +44,7 @@ export default function AdminNavbar() {
  <>
  {/* Full-width Glass Topbar */}
  <header className="fixed top-0 w-full z-50 bg-[#131314]/80 backdrop-blur-xl border-b border-white/10 shadow-lg">
- <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+ <div className="w-full px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
 
  {/* Brand & Admin Badge */}
  <div className="flex items-center gap-3 md:gap-4">

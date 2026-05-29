@@ -121,7 +121,7 @@ export default function AdminSettings() {
  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors group-focus-within:text-white">movie</span>
  <input
  required name="cinemaName" value={formData.cinemaName} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-4 pl-12 pr-4 text-white font-bold outline-none border border-transparent focus:border-white/20 transition-all text-sm"
+ className="w-full bg-[#202024] rounded-xl py-4 pl-14 pr-4 text-white font-bold outline-none border border-transparent focus:border-white/20 transition-all text-base"
  />
  </div>
  </div>
@@ -132,7 +132,7 @@ export default function AdminSettings() {
  <span className="material-symbols-outlined absolute left-4 top-5 text-zinc-500 transition-colors group-focus-within:text-white">location_on</span>
  <textarea
  required name="cinemaAddress" value={formData.cinemaAddress} onChange={handleChange} rows="3"
- className="w-full bg-[#202024] rounded-xl py-4 pl-12 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-sm resize-none"
+ className="w-full bg-[#202024] rounded-xl py-4 pl-14 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-base resize-none"
  />
  </div>
  </div>
@@ -144,7 +144,7 @@ export default function AdminSettings() {
  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors group-focus-within:text-white">alternate_email</span>
  <input
  required type="email" name="contactEmail" value={formData.contactEmail} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-4 pl-12 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-sm"
+ className="w-full bg-[#202024] rounded-xl py-4 pl-14 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-base"
  />
  </div>
  </div>
@@ -154,7 +154,7 @@ export default function AdminSettings() {
  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors group-focus-within:text-white">call</span>
  <input
  required type="tel" name="contactPhone" value={formData.contactPhone} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-4 pl-12 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-sm"
+ className="w-full bg-[#202024] rounded-xl py-4 pl-14 pr-4 text-white outline-none border border-transparent focus:border-white/20 transition-all text-base"
  />
  </div>
  </div>
@@ -185,14 +185,14 @@ export default function AdminSettings() {
  <label className="block text-[10px] uppercase tracking-widest font-bold text-zinc-500 mb-2 pl-1">Standard Seat</label>
  <input
  required type="number" min="0" step="0.01" name="bookingNormalPrice" value={formData.bookingNormalPrice} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-3 px-4 text-white outline-none focus:ring-1 focus:ring-[#e50914]/50 font-mono text-sm"
+ className="w-full bg-[#202024] rounded-xl py-3 px-4 text-white outline-none focus:ring-1 focus:ring-[#e50914]/50 font-mono text-base"
  />
  </div>
  <div>
  <label className="block text-[10px] uppercase tracking-widest font-bold text-[#e9c349] mb-2 pl-1">VIP Box Seat</label>
  <input
  required type="number" min="0" step="0.01" name="bookingVipPrice" value={formData.bookingVipPrice} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-3 px-4 text-[#e9c349] font-bold outline-none focus:ring-1 focus:ring-[#e9c349]/50 font-mono text-sm border border-[#e9c349]/20"
+ className="w-full bg-[#202024] rounded-xl py-3 px-4 text-[#e9c349] font-bold outline-none focus:ring-1 focus:ring-[#e9c349]/50 font-mono text-base border border-[#e9c349]/20"
  />
  </div>
  </div>
@@ -208,14 +208,14 @@ export default function AdminSettings() {
  <label className="block text-[10px] uppercase tracking-widest font-bold text-zinc-500 mb-2 pl-1">Standard Seat</label>
  <input
  required type="number" min="0" step="0.01" name="gateNormalPrice" value={formData.gateNormalPrice} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-3 px-4 text-white outline-none focus:ring-1 focus:ring-[#e50914]/50 font-mono text-sm"
+ className="w-full bg-[#202024] rounded-xl py-3 px-4 text-white outline-none focus:ring-1 focus:ring-[#e50914]/50 font-mono text-base"
  />
  </div>
  <div>
  <label className="block text-[10px] uppercase tracking-widest font-bold text-[#e9c349] mb-2 pl-1">VIP Box Seat</label>
  <input
  required type="number" min="0" step="0.01" name="gateVipPrice" value={formData.gateVipPrice} onChange={handleChange}
- className="w-full bg-[#202024] rounded-xl py-3 px-4 text-[#e9c349] font-bold outline-none focus:ring-1 focus:ring-[#e9c349]/50 font-mono text-sm border border-[#e9c349]/20"
+ className="w-full bg-[#202024] rounded-xl py-3 px-4 text-[#e9c349] font-bold outline-none focus:ring-1 focus:ring-[#e9c349]/50 font-mono text-base border border-[#e9c349]/20"
  />
  </div>
  </div>
@@ -230,7 +230,7 @@ export default function AdminSettings() {
  <button
  disabled={isSaving}
  type="submit"
- className="w-full sm:w-auto bg-[#e50914] hover:bg-[#c0000c] text-white px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-all disabled:opacity-50 shadow-[0_10px_20px_rgba(229,9,20,0.3)] flex justify-center items-center gap-2"
+ className="w-full sm:w-auto bg-[#e50914] hover:bg-[#c0000c] hover:scale-105 text-white px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-base transition-all disabled:opacity-50 shadow-[0_10px_20px_rgba(229,9,20,0.3)] flex justify-center items-center gap-2"
  >
  {isSaving ? <span className="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> : <span className="material-symbols-outlined text-[18px]">save</span>}
  Save Configuration

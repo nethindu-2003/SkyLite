@@ -44,7 +44,7 @@ export default function MainLayout() {
  <Navbar />
  
  {/* Page content (like Home.jsx) injected here */}
- <div className="flex-grow pt-20"> 
+ <div className="flex-grow pt-32 pb-20 w-full"> 
  <Outlet />
  </div>
 

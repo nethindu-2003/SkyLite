@@ -57,10 +57,10 @@ export default function Movies() {
  const uniqueGenres = ['Genre', ...new Set(allMovies.map(m => m.genre).filter(Boolean))];
 
  return (
- <main className="bg-[#131314] min-h-screen text-white pb-32 px-6 lg:px-12 w-full font-body selection:bg-primary-container selection:text-white">
- <div className="max-w-7xl mx-auto w-full pt-12 md:pt-16">
+ <main className="bg-[#131314] min-h-screen text-white w-full font-body selection:bg-primary-container selection:text-white">
+ <div className="w-full px-6 md:px-12 lg:px-20 space-y-16">
  <header className="mb-12 md:mb-16">
- <h1 className="text-4xl md:text-6xl font-headline font-black text-white mb-3 uppercase tracking-tight">Movie Catalog</h1>
+ <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black text-white mb-3 uppercase tracking-tight">Movie Catalog</h1>
  <p className="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Explore our current and upcoming cinematic releases</p>
  </header>
 
@@ -136,7 +136,7 @@ export default function Movies() {
  </div>
 
  <div className="px-2 space-y-1">
- <h3 className="text-sm md:text-base font-bold text-white uppercase tracking-tight group-hover:text-primary-container transition-colors line-clamp-1">{movie.title}</h3>
+ <h3 className="text-lg md:text-xl font-headline font-bold text-white uppercase tracking-tight line-clamp-1">{movie.title}</h3>
  <div className="flex items-center justify-between text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
  <span className="text-[#e9c349]">{movie.genre}</span>
  <span>{formatDuration(movie.duration)}</span>

@@ -86,7 +86,7 @@ export default function Home() {
  <div className="absolute inset-0 bg-gradient-to-r from-[#131314]/80 via-transparent to-transparent z-10"></div>
  </div>
 
- <div key={`content-${activeMovie.movieId}`} className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-20 md:pt-32">
+ <div key={`content-${activeMovie.movieId}`} className="relative z-20 w-full px-6 lg:px-12 pt-20 md:pt-32">
  <div className="space-y-6 max-w-3xl animate-in fade-in slide-in-from-bottom-6 duration-700">
  <div className="bg-primary-container text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest w-fit shadow-lg shadow-primary-container/20">
  Now Showing
@@ -125,7 +125,7 @@ export default function Home() {
  </header>
 
  {/* Dynamic Search/Filter Input Banner */}
- <section className="relative z-30 -mt-10 md:-mt-14 max-w-7xl mx-auto px-6 lg:px-12">
+ <section className="relative z-30 -mt-10 md:-mt-14 w-full px-6 lg:px-12">
  <div className="bg-[#1c1c1e] rounded-2xl p-4 shadow-2xl border border-white/5">
  <div className="relative flex items-center">
  <span className="material-symbols-outlined absolute left-5 text-zinc-500 text-[20px]">search</span>
@@ -141,13 +141,13 @@ export default function Home() {
  </section>
 
  {/* Movie Section Grids */}
- <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-32 space-y-24">
+ <section className="w-full px-6 lg:px-20 py-20 relative z-10 -mt-20 space-y-24">
  
  {/* Now Showing Grid */}
  <section className="space-y-12">
  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
  <div>
- <h2 className="text-2xl md:text-4xl font-headline font-black text-white uppercase tracking-tight">Now Showing</h2>
+ <h2 className="text-2xl md:text-3xl font-headline font-bold text-white uppercase tracking-wider">Now Showing</h2>
  <p className="text-zinc-500 text-xs mt-1">Select a movie below to choose showtimes and book your seats.</p>
  </div>
  <div className="h-[2px] bg-white/5 flex-grow hidden sm:block mx-8 mb-2"></div>
@@ -189,7 +189,7 @@ export default function Home() {
  
  {/* Default info below poster */}
  <div className="px-2 space-y-1">
- <h3 className="text-sm md:text-base font-bold text-white uppercase tracking-tight group-hover:text-primary-container transition-colors line-clamp-1">{movie.title}</h3>
+ <h3 className="text-lg md:text-xl font-headline font-bold text-white uppercase tracking-tight group-hover:text-primary-container transition-colors line-clamp-1">{movie.title}</h3>
  <div className="flex items-center justify-between text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
  <span>{movie.genre}</span>
  <span>{movie.language}</span>
@@ -205,7 +205,7 @@ export default function Home() {
  <section className="space-y-12">
  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
  <div>
- <h2 className="text-2xl md:text-4xl font-headline font-black text-white uppercase tracking-tight">Upcoming Releases</h2>
+ <h2 className="text-2xl md:text-3xl font-headline font-bold text-white uppercase tracking-wider">Upcoming Releases</h2>
  <p className="text-zinc-500 text-xs mt-1">Get ready for these blockbusters coming soon to Matara.</p>
  </div>
  <div className="h-[2px] bg-white/5 flex-grow hidden sm:block mx-8 mb-2"></div>
@@ -242,7 +242,7 @@ export default function Home() {
  
  {/* Text Details */}
  <div className="px-2 space-y-1">
- <h3 className="text-sm md:text-base font-bold text-white uppercase tracking-tight line-clamp-1">{movie.title}</h3>
+ <h3 className="text-lg md:text-xl font-headline font-bold text-white uppercase tracking-tight line-clamp-1">{movie.title}</h3>
  <div className="flex items-center justify-between text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
  <span>{movie.genre}</span>
  <span>{movie.releaseDate ? new Date(movie.releaseDate).toLocaleDateString('en-US', {month: 'short', year: 'numeric'}) : 'TBA'}</span>
@@ -254,7 +254,7 @@ export default function Home() {
  )}
  </section>
 
- </main>
+ </section>
  </div>
  );
 }

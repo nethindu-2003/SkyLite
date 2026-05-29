@@ -141,8 +141,8 @@ export default function Showtimes() {
   }
 
   return (
-    <div className="bg-[#131314] min-h-screen text-white font-body selection:bg-primary-container selection:text-white pt-24">
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-20 pb-40">
+    <div className="bg-[#131314] min-h-screen text-white font-body selection:bg-primary-container selection:text-white">
+      <main className="w-full px-6 md:px-12 lg:px-20 space-y-16">
         
         <header className="mb-14 md:mb-16">
           <h1 className="text-4xl md:text-6xl font-headline font-black text-white mb-3 uppercase tracking-tight">Showtimes</h1>
@@ -162,7 +162,7 @@ export default function Showtimes() {
           <div className="space-y-16 md:space-y-20">
             {/* Date Selector */}
             <section>
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6 ml-1">Select Date</h3>
+              <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 ml-1">Select Date</h3>
               <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
                 {uniqueDates.map((dateStr, index) => {
                   const isActive = selectedDate === dateStr;
@@ -186,7 +186,7 @@ export default function Showtimes() {
 
             {/* Time Selector */}
             <section>
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6 ml-1">Select Time</h3>
+              <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 ml-1">Select Time</h3>
               
               {availableShowsForDate.length === 0 ? (
                  <div className="bg-[#1c1c1e] p-8 rounded-2xl border border-white/5 text-center">
@@ -221,7 +221,7 @@ export default function Showtimes() {
                                         <img src={m.posterUrl} alt={m.title} className="w-full h-full object-cover" />
                                     </div>
                                     <div className="flex-1">
-                                        <h4 className="text-xl font-headline font-black text-white uppercase tracking-tight mb-1">{m.title}</h4>
+                                        <h4 className="text-lg md:text-xl font-headline font-bold text-white uppercase tracking-tight mb-1">{m.title}</h4>
                                         <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-6">{m.language} • {formatDuration(m.duration)}</p>
                                         <div className="flex flex-wrap gap-4">
                                             {movieShows.map(show => {

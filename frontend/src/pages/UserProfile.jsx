@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 export default function UserProfile() {
  const navigate = useNavigate();
@@ -13,6 +15,7 @@ export default function UserProfile() {
  const [userData, setUserData] = useState({ name: '', email: '', phone: '' });
  const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
  const [bookings, setBookings] = useState({ upcoming: [], past: [] });
+ const [seatMap, setSeatMap] = useState({});
 
  // Initial Data Fetch
  useEffect(() => {
@@ -53,6 +56,17 @@ export default function UserProfile() {
  
  setBookings({ upcoming, past });
  }
+
+ // 3. Fetch Theater Layout to map Seat IDs to Labels (A1, B3, etc.)
+ const seatsRes = await fetch('http://localhost:8080/api/theater/seats');
+ if (seatsRes.ok) {
+   const seatsData = await seatsRes.json();
+   const map = {};
+   seatsData.forEach(seat => {
+     map[seat.seatId] = `${seat.rowLabel}${seat.seatNumber}`;
+   });
+   setSeatMap(map);
+ }
  } catch (err) {
  console.error("Error fetching profile data:", err);
  } finally {
@@ -62,6 +76,72 @@ export default function UserProfile() {
 
  fetchDashboardData();
  }, [navigate]);
+
+  // --- PDF Ticket Generation ---
+  const downloadPDF = async (ticket) => {
+    try {
+      // Create new jsPDF instance
+      const doc = new jsPDF();
+      
+      // Theme colors
+      const primaryColor = [229, 9, 20]; // #e50914 (Red)
+      const textColor = [255, 255, 255];
+      const darkBg = [19, 19, 20]; // #131314
+      
+      // Header Background
+      doc.setFillColor(...darkBg);
+      doc.rect(0, 0, 210, 40, 'F');
+      
+      // Header Text
+      doc.setTextColor(...primaryColor);
+      doc.setFontSize(24);
+      doc.setFont("helvetica", "bold");
+      doc.text("SKYLITE CINEMA", 105, 20, { align: "center" });
+      
+      doc.setTextColor(...textColor);
+      doc.setFontSize(12);
+      doc.text("OFFICIAL MOVIE PASS", 105, 28, { align: "center" });
+
+      // Ticket Information
+      doc.setTextColor(40, 40, 40);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text(`Booking Reference: CNE-${ticket.bookingId}`, 15, 55);
+      
+      // Main Body
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      
+      autoTable(doc, {
+        startY: 65,
+        headStyles: { fillColor: primaryColor, textColor: 255 },
+        bodyStyles: { textColor: 40 },
+        head: [['Detail', 'Value']],
+        body: [
+          ['Movie Show ID', ticket.showId.toString()],
+          ['Booking Status', ticket.status.toUpperCase()],
+          ['Number of Seats', ticket.bookedSeats ? ticket.bookedSeats.length.toString() : '0'],
+          ['Seat Numbers', ticket.bookedSeats ? ticket.bookedSeats.map(s => seatMap[s.seatId] || s.seatId).join(', ') : 'N/A'],
+          ['Total Paid', `$${ticket.totalAmount ? ticket.totalAmount.toFixed(2) : '0.00'}`],
+          ['Booking Date', new Date(ticket.bookingDate).toLocaleString()]
+        ],
+        theme: 'grid',
+      });
+
+      // Footer
+      const finalY = doc.lastAutoTable.finalY || 150;
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text("Present this digital pass at the cinema entrance.", 105, finalY + 20, { align: "center" });
+      doc.text("Tickets are non-refundable. Please arrive 15 minutes before showtime.", 105, finalY + 28, { align: "center" });
+
+      // Save
+      doc.save(`Skylite_Ticket_CNE-${ticket.bookingId}.pdf`);
+    } catch (err) {
+      console.error("Failed to generate PDF:", err);
+      setMessage({ type: 'error', text: 'Could not generate ticket PDF.' });
+    }
+  };
 
  // --- Profile Update ---
  const handleProfileUpdate = async (e) => {
@@ -152,7 +232,7 @@ export default function UserProfile() {
  }
 
  return (
- <main className="bg-[#131314] min-h-screen text-white pt-32 pb-24 px-6 lg:px-12 w-full font-body">
+ <main className="bg-[#131314] min-h-screen text-white w-full font-body">
  <style>{`
  .glass-card {
  background: rgba(30, 30, 32, 0.4);
@@ -162,7 +242,7 @@ export default function UserProfile() {
  }
  `}</style>
 
- <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10">
+ <div className="w-full px-6 md:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
  
  {/* Left Sidebar */}
  <aside className="lg:col-span-4 space-y-8">
@@ -305,7 +385,7 @@ export default function UserProfile() {
  <div className="animate-in fade-in duration-500">
  <div className="mb-10 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
  <div>
- <h2 className="text-3xl font-headline font-black uppercase tracking-tight mb-2">My Tickets</h2>
+ <h2 className="text-2xl md:text-3xl font-headline font-bold text-white uppercase tracking-wider mb-2">My Tickets</h2>
  <p className="text-zinc-500 text-sm">Access your digital passes.</p>
  </div>
  </div>
@@ -321,10 +401,10 @@ export default function UserProfile() {
  <p className="text-zinc-600 italic text-sm py-4 bg-black/20 rounded-xl px-6 border border-white/5">No upcoming tickets.</p>
  ) : (
  bookings.upcoming.map(ticket => (
- <Link 
- to={`/booking-confirmation/${ticket.bookingId}`} 
+ <button 
+ onClick={() => downloadPDF(ticket)}
  key={ticket.bookingId}
- className="group bg-black/40 hover:bg-black/60 border border-white/10 hover:border-[#e50914]/50 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 transition-all duration-300"
+ className="w-full text-left group bg-black/40 hover:bg-black/60 border border-white/10 hover:border-[#e50914]/50 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 transition-all duration-300"
  >
  <div className="flex items-center gap-6">
  <div className="w-14 h-14 bg-white/5 rounded-xl flex flex-col items-center justify-center border border-white/10 group-hover:bg-[#e50914]/10 group-hover:border-[#e50914]/30 transition-colors">
@@ -339,7 +419,7 @@ export default function UserProfile() {
  <div className="bg-[#e50914] text-white px-6 py-3 rounded-lg text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 transition-transform shadow-lg">
  Get Ticket <span className="material-symbols-outlined text-[14px]">download</span>
  </div>
- </Link>
+ </button>
  ))
  )}
  </div>

@@ -88,7 +88,7 @@ export default function Navbar() {
  return (
  <>
  <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#131314]/80 backdrop-blur-md py-4 border-b border-white/[0.06] shadow-xl' : 'bg-transparent py-7'}`}>
- <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+ <div className="w-full px-6 md:px-12 lg:px-20 flex items-center justify-between">
  
  {/* Logo Section */}
  <Link to="/" className="flex items-center gap-3 group">

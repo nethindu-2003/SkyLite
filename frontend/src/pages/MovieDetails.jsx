@@ -73,7 +73,7 @@ export default function MovieDetails() {
  <div className="absolute inset-0 bg-gradient-to-r from-[#131314]/80 via-transparent to-transparent z-10"></div>
  </div>
 
- <div className="relative z-20 max-w-7xl mx-auto px-6 h-full flex flex-col justify-end pb-16 md:pb-24 pt-32">
+ <div className="relative z-20 w-full px-6 h-full flex flex-col justify-end pb-16 md:pb-24 pt-32">
  <div className="space-y-6 max-w-4xl animate-in fade-in slide-in-from-bottom-6 duration-700">
  <div className="flex flex-wrap items-center gap-3">
  <span className="bg-primary-container px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-primary-container/20">
@@ -109,7 +109,7 @@ export default function MovieDetails() {
  </section>
 
  {/* Content */}
- <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+ <div className="w-full px-6 py-20 md:py-24">
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
  
  {/* Synopsis */}

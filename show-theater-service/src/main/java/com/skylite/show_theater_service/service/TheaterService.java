@@ -31,21 +31,42 @@ public class TheaterService {
 
     @Transactional
     public List<Seat> updateTheaterLayout(List<SeatRequest> newLayout) {
-        // 1. Delete the old layout
-        // Note: In a production system, you would check if future bookings exist before deleting!
-        seatRepository.deleteAll();
+        // 1. Fetch current layout
+        List<Seat> currentSeats = seatRepository.findAll();
 
-        // 2. Map DTOs to Entities
-        List<Seat> newSeats = newLayout.stream().map(req -> {
-            Seat seat = new Seat();
-            seat.setRowLabel(req.getRowLabel());
-            seat.setSeatNumber(req.getSeatNumber());
-            seat.setSeatType(req.getSeatType());
-            return seat;
-        }).collect(Collectors.toList());
+        // 2. Map current seats by a unique key (rowLabel + seatNumber)
+        java.util.Map<String, Seat> currentSeatMap = currentSeats.stream()
+                .collect(Collectors.toMap(
+                        s -> s.getRowLabel() + "-" + s.getSeatNumber(),
+                        s -> s
+                ));
 
-        // 3. Save the new layout
-        return seatRepository.saveAll(newSeats);
+        List<Seat> updatedSeats = new java.util.ArrayList<>();
+
+        // 3. Process new layout
+        for (SeatRequest req : newLayout) {
+            String key = req.getRowLabel() + "-" + req.getSeatNumber();
+            Seat existingSeat = currentSeatMap.remove(key); // Remove from map as it's processed
+
+            if (existingSeat != null) {
+                // Update existing seat type (retains seatId)
+                existingSeat.setSeatType(req.getSeatType());
+                updatedSeats.add(existingSeat);
+            } else {
+                // Create new seat
+                Seat newSeat = new Seat();
+                newSeat.setRowLabel(req.getRowLabel());
+                newSeat.setSeatNumber(req.getSeatNumber());
+                newSeat.setSeatType(req.getSeatType());
+                updatedSeats.add(newSeat);
+            }
+        }
+
+        // 4. Any seats left in currentSeatMap are no longer in the layout, so delete them
+        seatRepository.deleteAll(currentSeatMap.values());
+
+        // 5. Save the updated layout
+        return seatRepository.saveAll(updatedSeats);
     }
 
     // ==========================================
